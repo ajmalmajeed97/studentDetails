@@ -1,0 +1,15 @@
+<div>
+    <form name="fetch" novalidate>
+    <p>
+    <input type="text" name="sub" placeholder="Enter subject" ng-model="sub" required>
+    <span style="color:red" ng-show="fetch.sub.$dirty && fetch.sub.$invalid">
+    <span ng-show="fetch.sub.$error.required">subject  is required</span>
+    </span>
+    </p>
+    <p><button type="button" class="btn btn-primary" ng-disabled=" fetch.sub.$invalid "ng-click="subject()">Submit</button></p>
+    </form>
+   </div>
+   <br>
+   <h3 style=color:blue>{{topper}}</h3> 
+   <br>
+   <br>

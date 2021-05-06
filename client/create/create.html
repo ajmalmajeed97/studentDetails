@@ -1,0 +1,45 @@
+<div>
+    <br><br><br>
+    <h1>Add New Student</h1>
+   
+    <form name="details" novalidate>
+
+                <input type="text" placeholder="Enter name" ng-model="name" name="name" character /><br />
+                <span style="color:red" ng-show="details.name.$error.character">Given name is not a valid name!</span>
+                <br>
+                <input type="number" name="age" placeholder="Age" ng-model="age" min="0" ageValidation />
+                <span style="color:red" ng-show="details.age.$error.ageValidation">The value is not a valid age!</span>
+                <span style="color:red" ng-show="details.age.$error.min ">
+                  Age value must be above 0</span>
+                
+                 <br><br>
+                <input type="number" name="roll" placeholder="Roll number" ng-model="roll" min="0" rollValidation >
+                <span style="color:red" ng-show="details.roll.$error.rollValidation">The value is not a valid name!</span>
+                <span style="color:red" ng-show="details.roll.$error.min ">
+                  Value of roll number must be above 0</span>
+                
+                  <br><br>
+                <button type="button" class="btn btn-primary"  ng-disabled=" details.name.$invalid" ng-click="create()">Submit</button>
+               <br><br>
+        </form>
+        <br><br><br>
+        <div>
+            <table class="container">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Roll</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="student in students">
+                        <td>{{student.name}}</td>
+                        <td>{{student.age}}</td>
+                        <td>{{student.roll}}</td>
+                        <td><input class="row-del-btn" type="button" value=" Delete " ng-click="delete(student._id,$index)"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

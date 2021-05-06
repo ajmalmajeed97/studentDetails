@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app='MyApp'>
+<head>
+  <meta charset='utf-8'>
+  <title>Egghead</title>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js'></script>
+  <script>
+    angular
+      .module('MyApp', [])
+      .controller('FirstCtrl', ['$scope', function ($scope) {           // empty here for now
+      }])
+      .controller('SecondCtrl', ['$scope', function ($scope) {
+        // empty here for now
+      }]);
+  </script>
+</head>
+<body>
+  <!—- part of $rootScope --> 
+  <input type='text' ng-model='data.message'><br>
+  <p>{{ data.message }}</p>
+  <div ng-controller='FirstCtrl'>
+    <!-- part of FirstCtrl's $scope -->
+    <input type='text' ng-model='data.message'>
+    <p>{{ data.message }}</p>
+  </div>
+  <div ng-controller='SecondCtrl'>
+    <!-- part of SecondCtrl's $scope -->
+    <input type='text' ng-model='data.message'>
+    <p>{{ data.message }}</p>
+  </div>
+</body>
+</html>

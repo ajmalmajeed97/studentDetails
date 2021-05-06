@@ -1,0 +1,24 @@
+
+<div>
+        <br><br>
+        <input type="text"  placeholder="Enter Roll Numbers" ng-model="searchRoll"/>
+        <button type="button" class="btn btn-primary" ng-click="multipleSearch()">search</button>
+        <br><br><br>
+        <table class="container">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Roll</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students">
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.roll}}</td>
+                    <td><input class="row-del-btn" type="button" value=" Delete " ng-click="delete(student._id,$index)"/></td>
+                </tr>
+            </tbody>
+        </table>
+</div>

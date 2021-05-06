@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="class" [ng-strict-di="boolean"]>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"integrity="sha512-5zOAub3cIpqklnKmM05spv4xttemFDlbBrmRexWiP0aWV8dlayEGciapAjBQWA7lgQsxPY6ay0oIUVtY/pivXA=="crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script  src="index.js"></script>
+    <script src="factory.js"></script>
+    <script  src="record.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body >
+  <div ng-controller="controller" >
+    <form name="outerForm" class="tab-form-demo">
+      <uib-tabset active="activeForm">
+        <uib-tab index="0" heading="Student Details">
+          <div>
+            <h1>Student Details</h1>
+            <br><br>
+            <table class="container">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Roll</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="student in students">
+                        <td>{{student.name}}</td>
+                        <td>{{student.age}}</td>
+                        <td>{{student.roll}}</td>
+                        <td><input class="row-del-btn" type="button" value=" Delete " ng-click="delete(student._id,$index)"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+        </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Add Student">
+          <div>
+            <br><br><br>
+            <h1>Add New Student</h1>
+           
+            <form name="details" novalidate>
+        
+                        <input type="text" placeholder="Enter name" ng-model="name" name="name" character /><br />
+                        <span style="color:red" ng-show="details.name.$error.character">Given name is not a valid name!</span>
+                        <br>
+                        <input type="number" name="age" placeholder="Age" ng-model="age" min="0" ageValidation />
+                        <span style="color:red" ng-show="details.age.$error.ageValidation">The value is not a valid age!</span>
+                        <span style="color:red" ng-show="details.age.$error.min ">
+                          Age value must be above 0</span>
+                        
+                         <br><br>
+                        <input type="number" name="roll" placeholder="Roll number" ng-model="roll" min="0" rollValidation >
+                        <span style="color:red" ng-show="details.roll.$error.rollValidation">The value is not a valid name!</span>
+                        <span style="color:red" ng-show="details.roll.$error.min ">
+                          Value of roll number must be above 0</span>
+                        
+                          <br><br>
+                        <button type="button" class="btn btn-primary"  ng-disabled=" details.name.$invalid" ng-click="create()">Submit</button>
+                       <br><br>
+                </form>
+                
+        </div>
+        <br><br><br>
+        <div>
+          <h1>Student Details</h1>
+          <br><br>
+          <table class="container">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Roll</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="student in students">
+                      <td>{{student.name}}</td>
+                      <td>{{student.age}}</td>
+                      <td>{{student.roll}}</td>
+                      <td><input class="row-del-btn" type="button" value=" Delete " ng-click="delete(student._id,$index)"/></td>
+                  </tr>
+              </tbody>
+          </table>
+          <br><br>
+      </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Search Student">
+          <div>
+            <br><br>
+            <input type="text"  placeholder="Enter Roll Numbers" ng-model="searchRoll"/>
+            <button type="button" class="btn btn-primary" ng-click="multipleSearch()">search</button>
+            <br><br><br>
+            <table class="container">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Roll</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="student in students">
+                        <td>{{student.name}}</td>
+                        <td>{{student.age}}</td>
+                        <td>{{student.roll}}</td>
+                        <td><input class="row-del-btn" type="button" value=" Delete " ng-click="delete(student._id,$index)"/></td>
+                    </tr>
+                </tbody>
+            </table>
+      </div>
+        </uib-tab>
+        <uib-tab index="3" heading="Find Topper">
+          <br><br><br>
+            <div>
+            <form name="fetch" novalidate>
+            <p>
+            <input type="text" name="sub" placeholder="Enter subject" ng-model="sub" required>
+            <span style="color:red" ng-show="fetch.sub.$dirty && fetch.sub.$invalid">
+            <span ng-show="fetch.sub.$error.required">subject  is required</span>
+            </span>
+            </p>
+            <p><button type="button" class="btn btn-primary" ng-disabled=" fetch.sub.$invalid "ng-click="subject()">Submit</button></p>
+            </form>
+           </div>
+           <br>
+           <h3 style=color:blue>{{topper}}</h3> 
+           <br>
+           <br>
+        </uib-tab>
+      </uib-tabset>
+    </form>
+
+     
+ 
+</div>
+</body>
+</html>
+
+
+

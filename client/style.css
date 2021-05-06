@@ -1,0 +1,33 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container td {
+  border: solid 1px black;
+}
+
+.container th {
+  border-top: solid 1px black;
+}
+
+.container th {
+  border: solid 2px black;
+}
+
+.container td:last-child {
+  border: 0;
+}
+
+.container td:last-child input {
+  display: none;
+}
+
+.container tr:hover > td:last-child > input {
+  display: block;
+}
+
+table.container {
+  font-family: Arial;
+  border-collapse: collapse;
+}
